@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Upload and Convert</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/common.css" />
+    <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./css/UntitledPage.css" />
+    <link rel="stylesheet" type="text/css" href="./css/Home.css" />
+
+    <style>
+        /*header style*/
+        #header {
+            font-family: "Oswald", sans-serif;
+            display: flex; /* 使用 Flexbox 佈局 */
+            position: fixed; /* 固定在頂部 */
+            justify-content: space-between; /* 左右對齊 */
+            align-items: center; /* 垂直居中對齊 */
+            text-align: center; /* 文字置中對齊 */
+            background-color: rgb(46, 43, 40); /* 半透明的黑色背景 */
+            color: #fff; /* 文字顏色設為白色 */
+            padding: 5px; 
+            top: 0;
+            width: 100%;
+            height:8%;
+            z-index: 1000; /* 比其他內容的 z-index 要大 */
+        }
+
+        #header-right ul {
+            list-style-type: none; /* 移除列表項目的標示點 */
+            padding: 0; /* 移除列表項目的內邊距 */
+            display: flex; /* 將列表項目水平排列 */
+            justify-content: flex-end; /* 將列表項目置於父容器的右側 */
+        }
+
+        #header-right ul li {
+            margin-left: 25px; /* 列表項目之間的間距 */
+        }
+
+        #header-right a {
+            
+            font-optical-sizing: auto;
+            color: #ffffff; /* 調整連結文字顏色 */
+            text-decoration: none;
+            background-color: transparent; /* 將連結的背景設置為透明 */
+            font-family: Arial, sans-serif; /* 設置連結文字的字體 */
+            font-size: 15px; /* 設置連結文字的字體大小 */
+            line-height: auto; /* 將連結文字上下置中 */
+            padding-right: 20px; /* 調整連結文字與右邊距的距離 */
+            line-height: 50%; /* 將連結文字上下置中 */
+        }
+
+        #header-right a:hover {
+            text-decoration: underline; /* 滑鼠懸停時顯示下劃線 */
+        }
+
+        .header-title {
+            margin: 0; /* 清除預設邊距 */
+            font-weight: bold; /* 將標題文字設置為粗體 */
+            font-optical-sizing: auto;
+            font-size: 25px;
+            margin-left: 10px; /* 左邊距，根據需要調整 */
+
+        }
+        .header-title {
+            color: #ffffff; /* 調整連結文字顏色 */
+            font-family: "Oswald", sans-serif;
+            text-decoration: none;
+        }
+
+        #header-left img {
+            margin-left: 20px; 
+            margin-right: 2px;
+        }   
+
+
+        #header-right { 
+            display: flex; /* 使用 Flexbox 佈局 */ 
+            align-items: center; /* 垂直居中對齊 */    
+            font-optical-sizing: auto;
+            font-size: 13px;
+            font-weight: bold; /* 將標題文字設置為粗體 */
+            font-style: normal;
+        }
+
+        #header-left {
+            display: flex; /* 使用 Flexbox 佈局 */
+            align-items: center; /* 垂直居中對齊 */
+            
+        }
+
+        /*button*/
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #7aa0b4;
+            color: rgba(36, 50, 87, 0.988);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #e2e3e6;
+            color:#000
+        }
+
+        button {
+            border-radius: 0;
+        }
+        
+        button:focus:not(:focus-visible) {
+            outline: 0;
+        }
+
+        input[type="file"] {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            margin-bottom: 50px;
+            margin-right: 20px;
+            margin-left: 80px;
+            border: 1.5px solid #e9ecef;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            outline: none;
+        }
+
+        .generate-results-btn {
+            margin-top: 10px;
+            margin-left: 80px;
+        }
+        .btn-primary {
+            display: inline-block; 
+        }
+        .content_box h2, .content_box .h2{
+            font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 1rem;
+            line-height: 2.5rem;
+            letter-spacing: 0.2rem;
+            color:#fff;
+            margin-left: 80px;
+            margin-bottom: 40px;
+        }
+    </style>
+
+
+</head>
+
+<body class="flex-column">
+     <!-- Navigation-->
+     <nav id="header">
+        <div id="header-left">
+            <img src="{{ url_for('static', filename='/assets/review.png') }}" alt="Icon" width="35" height="35"> <!-- 將 "icon.png" 替換為你的圖標 -->
+            <a class="header-title" href="#page-top">Summary</a>
+        </div>
+        <div id="header-right">
+            <ul>
+                <li><a href="#image-section" class="nav-link">Outline</a></li>
+                <li><a href="#summary-section" class="nav-link">Summary</a></li>
+                <li><a href="#challenge-section" class="nav-link">Quize</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Homepage-->
+    <section class="home root">
+        <div class="content_box">
+            <h1 class="hero_title">教學影音整合平台</h1>
+            <form action="/snapshot_and_convert" method="post" enctype="multipart/form-data">
+                <input type="file" name="video" accept=".mp4">
+                <button class="btn-primary" href="#about" type="submit">Upload and Convert</button>
+            </form>
+            {% if success %}
+            <div>
+                <h2>Execution Successful!</h2>
+                
+                <form action="/final" method="post">
+                    <button class="generate-results-btn" type="submit">Generate Results</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    <!--Homepage1-->
+    <section class="untitled-page root">
+        <div class="flex_col">
+            <div class="flex_col1">
+                <h1 class="hero_title">Which do you want to watch!</h1>
+                <hr class="line" size="1" />
+            </div>
+            <div class="flex_row">
+                <div class="content_box">
+                    <div class="rect1"></div>
+                    <button class="subtitle">read more<br /></button>
+                    <div class="flex_col2">
+                        <h1 class="hero_title1">Outline</h1>
+                        <h3 class="subtitle1">影片的大綱整理</h3>
+                    </div>
+                </div>
+                <div class="content_box">
+                    <div class="rect1"></div>
+                    <button class="subtitle">read more<br /></button>
+                    <div class="flex_col3">
+                        <h1 class="hero_title11">Summary</h1>
+                        <h3 class="subtitle1">影片的重點摘要及圖片<br /></h3>
+                    </div>
+                </div>
+                <div class="content_box">
+                    <div class="rect1"></div>
+                    <button class="subtitle">read more<br /></button>
+                    <div class="flex_col4">
+                        <h1 class="hero_title12">Quiz</h1>
+                        <h3 class="subtitle1">影片內容牛刀小試</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+<footer class="footer "><div class="foot-div">Copyright &copy; TKU CSIE 2024</div></footer>
+
+</html>
